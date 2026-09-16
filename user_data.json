@@ -1,0 +1,10 @@
+{
+  "name": "Vlad",
+  "age": 22,
+  "nationality": "Romanian",
+  "external" : true,
+  "address": {
+    "city": "Brasso",
+    "street": "Intoarsa"
+  }
+}

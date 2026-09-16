@@ -25,17 +25,19 @@ received_user = {
         "street": "Intoarsa"
     }
 }
+if __name__ == "__main__":
+        validate_user = UserValidator(**received_user)
+        print(validate_user)
+        print(received_user["name"])
+        print("==================Validations==================")
 
-print(received_user["name"])
-print("==================Validations==================")
+        #try-cath
 
-#try-cath
-
-try:
-    validate_user = UserValidator.model_validate(received_user, strict=True)
-    print(validate_user)
-except ValidationError as e:
-    print(e)
-    print(e.errors())
-finally:
-    print("am terminat cu validarea")
+        try:
+            validate_user = UserValidator.model_validate(received_user, strict=True)
+            print(validate_user)
+        except ValidationError as e:
+            print(e)
+            print(e.errors())
+        finally:
+            print("am terminat cu validarea")

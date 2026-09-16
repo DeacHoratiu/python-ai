@@ -1,16 +1,37 @@
-# This is a sample Python script.
+import os
+import json
+import requests
+from dotenv import load_dotenv
 
-# Press Ctrl+F5 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+load_dotenv()
 
+# First API call without reasoning
+try:
+  response = requests.post(
+    url="https://openrouter.ai/api/v1/chat/completions",
+    headers={
+        "Authorization": f"Bearer {os.getenv('OPENROUTER_API_KEY')}",
+        "Content-Type": "application/json",
+    },
+    json={
+        "model": os.getenv("OPENROUTER_MODEL"),
+        "messages": [
+            {
+                "role": "user",
+                "content": "Write me a python function that checks for prime numbers"
+            },
+        ],
+    },
+    timeout=60,
+)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press F9 to toggle the breakpoint.
+  data = response.json()
+  output = data["choices"][0]["message"]["content"]
+  print(output)
+  # print(json.dumps(data, indent=2))
 
+# except requests.exceptions.Timeout:
+#     print("Request timed out. The model/provider took too long to respond.")
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+except requests.exceptions.RequestException as e:
+    print(f"Request failed: {e}")
