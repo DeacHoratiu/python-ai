@@ -12,7 +12,7 @@ def test_simple_case_1():
 
 def test_user_validation():
     received_user = {
-        "name": "Vicentiu",
+        "name": "Gutavo",
         "age": 11,
         "nationality": "Romanian",
         "external": True,
