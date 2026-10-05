@@ -17,7 +17,7 @@ def search_word(filepath,lookup_word):
         if lookup_word.lower() in clean_word:
             words_found = words_found + 1
 
-    report = f"Word Search Report: \n Word Lookup: {lookup_word.lower()} \n Words Found: {words_found} times \n File total word count: {total_words} words"
+    report = f" Word Search Report: \n Word Lookup: {lookup_word.lower()} \n Words Found: {words_found} times \n File total word count: {total_words} words"
     return report
 
 result = search_word("paragraphs","marcus")
